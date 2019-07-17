@@ -2,48 +2,75 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.png';
 import './App.css';
 
+var Particle = require('particle-api-js');
+var particle = new Particle();
+
+// Use particle SDK to call our remote button function.
+function doTheThing() {
+  var fnPr = particle.callFunction({
+    deviceId: process.env.REACT_APP_DEVICE_ID,
+    name: 'toggleLED',
+    argument: '',
+    auth: process.env.REACT_APP_TOKEN
+  });
+
+  fnPr.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    },
+    function(err) {
+      console.log('An error occurred:', err);
+    }
+  );
+}
+
 function App() {
-  // STEP 2: Set up credentials.
-  const credentials = '';
-  const buttonID = '';
-  const [buttons, setButtons] = useState([true, true, true, true]);
+  const [buttons, setButtons] = useState([
+    {
+      id: 1,
+      pressed: false
+    },
+    {
+      id: 1,
+      pressed: false
+    },
+    {
+      id: 1,
+      pressed: false
+    },
+    {
+      id: 1,
+      pressed: false
+    }
+  ]);
   const [lights, setLights] = useState([
-    { on: true, color: 'red' },
-    { on: false, color: 'red' },
-    { on: true, color: 'red' },
-    { on: true, color: 'red' },
-    { on: true, color: 'red' },
-    { on: true, color: 'red' },
-    { on: false, color: 'red' },
-    { on: true, color: 'red' },
-    { on: false, color: 'red' },
-    { on: true, color: 'red' },
-    { on: true, color: 'red' },
-    { on: true, color: 'red' }
+    { on: false, color: 'red', id: 1 },
+    { on: true, color: 'red', id: 2 },
+    { on: false, color: 'red', id: 3 },
+    { on: false, color: 'red', id: 4 }
   ]);
 
   // STEP 3: Get the state of the lights.
   useEffect(() => {
-    // Update the document title using the browser API
-    console.log = '';
+    particle
+      .getVariable({
+        deviceId: process.env.REACT_APP_DEVICE_ID,
+        name: 'button',
+        auth: process.env.REACT_APP_TOKEN
+      })
+      .then(
+        function(data) {
+          console.log('Device variable retrieved successfully:', data);
+        },
+        function(err) {
+          console.log('An error occurred while getting attrs:', err);
+        }
+      );
   });
 
-  // STEP 3: Get the state of the buttons.
+  // STEP 4: Subscribe to buttons.
   useEffect(() => {
     // Update the document title using the browser API
-    console.log = 'Step 3';
-  });
-
-  // STEP 4: Subscribe to changes in the lights and buttons.
-  useEffect(() => {
-    // Update the document title using the browser API
-    console.log = 'Step 4';
-  });
-
-  // CHALLENGE: Create a function to do something cool.
-  useEffect(() => {
-    // Update the document title using the browser API
-    console.log = 'Challenge';
   });
 
   return (
@@ -53,9 +80,10 @@ function App() {
         <div className="buttons">
           {buttons.map(button => (
             <span
+              key={button.id}
               className="buttonState"
               style={
-                button
+                button.pressed
                   ? { backgroundColor: 'white' }
                   : { backgroundColor: 'gray' }
               }
@@ -65,6 +93,7 @@ function App() {
         <div className="lights">
           {lights.map(light => (
             <span
+              key={light.id}
               className="light"
               style={
                 light.on
@@ -74,14 +103,7 @@ function App() {
             />
           ))}
         </div>
-        <button
-          onClick={() => {
-            setLights(
-              lights.map(light => ({ on: !light.on, color: light.color }))
-            );
-          }}
-          className="button"
-        >
+        <button onClick={() => doTheThing()} className="button">
           Run Code!
         </button>
         <p>
