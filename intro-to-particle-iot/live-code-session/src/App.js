@@ -31,15 +31,15 @@ function App() {
       pressed: false
     },
     {
-      id: 1,
+      id: 2,
       pressed: false
     },
     {
-      id: 1,
+      id: 3,
       pressed: false
     },
     {
-      id: 1,
+      id: 4,
       pressed: false
     }
   ]);
