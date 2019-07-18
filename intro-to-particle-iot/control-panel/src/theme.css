@@ -1,0 +1,6 @@
+:root {
+  --color-theme-1-rgb: 47, 51, 115;
+  --color-theme-1: rgb(var(--color-theme-1-rgb));
+  --color-theme-2-rgb: 57, 202, 163;
+  --color-theme-2: rgb(var(--color-theme-2-rgb));
+}

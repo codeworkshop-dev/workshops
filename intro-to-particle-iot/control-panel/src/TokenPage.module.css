@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.inputBox {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+  padding: 10px;
+  height: 40px;
+  width: 200px;
+  margin-right: 10px;
+  border-radius: 4px;
+  border: none;
+}
+
+.button {
+  width: 100px;
+  border-radius: 4px;
+  border: none;
+}

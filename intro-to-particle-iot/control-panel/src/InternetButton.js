@@ -1,42 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import InternetButtonLights from './InternetButtonLights';
 import styles from './InternetButton.module.css';
-import useAppState from './hooks/useAppState';
-import particle from './particle';
 import classnames from './utils/classnames';
 
-function InternetButton({ device }) {
-  const [{ token }] = useAppState();
-  const [lights, setLights] = useState({});
-  const [connected, setConnected] = useState(device.connected);
-  console.log(device);
-  useEffect(() => {
-    particle
-      .getEventStream({ deviceId: device.id, auth: token })
-      .then(function(stream) {
-        console.log('start stream');
-        stream.on('event', function({ data, name }) {
-          console.log('Event: ', data);
-          if (name === 'spark/status') {
-            if (data === 'online') {
-              setConnected(true);
-            }
-
-            if (data === 'offline') {
-              setConnected(false);
-            }
-          }
-        });
-      });
-  }, [device.id]);
+function InternetButton({ device, onLightClick }) {
+  const { orientation: { x = 0, y = 0, z = 0 } = {} } = device;
 
   return (
-    <div className={classnames(styles.root, !connected && styles.inactive)}>
+    <div
+      className={classnames(styles.root, !device.connected && styles.inactive)}
+      style={{
+        transform: `rotate3d(1,0,0,${x}deg) rotate3d(0,1,0,${y}deg) rotate3d(0,0,1,${z}deg)`,
+      }}
+    >
       <div className={styles.glass} />
       <InternetButtonLights
-        // onLightClick={props.onLightClick}
-        lights={lights}
+        onLightClick={onLightClick}
+        lights={device.lights}
+        brightness={device.brightness}
       />
       <div className={styles.center}>
         <div className={styles.usbPort} />
@@ -47,7 +29,7 @@ function InternetButton({ device }) {
 }
 
 InternetButton.propTypes = {
-  lights: PropTypes.array,
+  device: PropTypes.object,
 };
 
 export default InternetButton;

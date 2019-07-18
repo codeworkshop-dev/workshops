@@ -1,0 +1,50 @@
+.root {
+  background: var(--color-theme-2);
+  border-radius: 4px;
+  box-shadow: 0 0 12px 2px #09033e;
+  margin: 2em;
+  cursor: pointer;
+}
+
+.buttonBox {
+  padding: 0.8em;
+  width: 200px;
+  height: 200px;
+}
+
+.contentBox {
+  border-radius: 0 0 4px 4px;
+  padding: 0.8em;
+  text-align: left;
+  min-height: 60px;
+  background: #39caa3;
+}
+
+.contentHeading {
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+}
+
+.contentDetails {
+  display: grid;
+  margin-top: 0.2em;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1em;
+}
+
+.identifyButton {
+  margin-top: 1em;
+  background: #2196f3;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 0.8em;
+  text-transform: uppercase;
+}
+
+.identifyButton:hover {
+  background: #005ea9;
+}

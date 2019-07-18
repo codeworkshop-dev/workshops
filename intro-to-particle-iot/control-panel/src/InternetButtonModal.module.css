@@ -1,0 +1,86 @@
+.root {
+  background: var(--color-theme-1);
+  border-radius: 8px;
+  box-shadow: 0 0 100px 100px #00000082;
+  display: flex;
+  height: 90vh;
+  left: 50%;
+  padding: 3em;
+  position: fixed;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  text-align: left;
+  width: 90vw;
+}
+
+.column {
+  flex: 1;
+}
+
+.heading {
+  font-size: 26px;
+  margin-bottom: 0.2em;
+}
+
+.sectionHeading {
+  align-items: center;
+  border-radius: 4px;
+  background: linear-gradient(45deg, #00dea2, #02a277);
+  display: grid;
+  font-size: 26px;
+  height: 70px;
+  justify-content: flex-start;
+  margin-top: 2em;
+  text-align: flex-start;
+  width: 300px;
+  grid-template-columns: 70px 1fr;
+  grid-template-rows: 70px;
+}
+
+.sectionHeadingIcon {
+  background: #009688;
+  border-radius: 4px 0 0 4px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionHeadingText {
+  padding-left: 0.6em;
+}
+
+.colorPickerBox {
+  display: grid;
+  gap: 1em;
+  margin-top: 1em;
+  margin-left: 0.1em;
+}
+
+.cancelButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background: transparent;
+  border: none;
+  fill: #c5ceff;
+}
+
+.orientationGrid {
+  display: grid;
+  font-size: 26px;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  width: 200px;
+}
+.orientationGrid > dt {
+  background: #0000003d;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.orientationGrid > dd {
+  padding: 10px;
+}

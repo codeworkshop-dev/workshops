@@ -7,12 +7,12 @@ export default function InternetButtonLights(props) {
   // of the light array passed.
   const lights = [...Array(11)];
 
-  const { lights: passedLights = [] } = props;
+  const { lights: passedLights = [], brightness = 255, onLightClick } = props;
   return (
     <React.Fragment>
       {lights.map((_, i) => {
         const light = passedLights[i] || {};
-        const color = light.color || 'red';
+        const color = `rgb(${light || '200,200,200'})`;
         return (
           <div
             key={i}
@@ -21,21 +21,19 @@ export default function InternetButtonLights(props) {
               transform: `rotate(${i / 2 + 0.625}rad)`,
             }}
           >
-            <label
+            <div
               className={styles.label}
-              onClick={() => {
-                // props.onLightClick(i)
-              }}
+              onClick={() => onLightClick && onLightClick(i + 1)}
             >
-              <input type="checkbox" className={styles.checkbox} />
               <div
                 className={styles.light}
                 style={{
+                  opacity: brightness / 255,
                   background: color,
                   boxShadow: `0 0 24px 26px ${color}`,
                 }}
               />
-            </label>
+            </div>
           </div>
         );
       })}

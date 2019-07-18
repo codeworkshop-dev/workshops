@@ -9,9 +9,9 @@
   pointer-events: auto;
   position: absolute;
   z-index: 1;
-  width: 60px;
-  height: 45px;
-  bottom: 10px;
+  width: 11.25%;
+  height: 8%;
+  bottom: 2%;
   left: 50%;
   display: flex;
   transform: translate(-50%, 0%);
@@ -23,13 +23,4 @@
   border-radius: 100%;
   margin: auto;
   border: none;
-}
-
-.checkbox {
-  display: none;
-}
-
-.checkbox:checked + .light {
-  background: #282c34 !important;
-  box-shadow: 0 0 24px 26px #282c34 !important;
 }
